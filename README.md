@@ -19,7 +19,7 @@
 
 1. 克隆專案
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/jasonlinkai/auto-trading.git
 cd auto-trading
 ```
 
@@ -42,24 +42,18 @@ BITMEX_API_SECRET=your_api_secret_here
 
 ```
 auto-trading/
-├── src/
-│   ├── data/              # 數據源相關
-│   │   ├── DataSource.js  # 數據源抽象類
-│   │   └── BitmexDataSource.js  # BitMEX 數據源實現
-│   ├── strategy/          # 策略相關
-│   │   ├── Strategy.js    # 策略抽象類
-│   │   └── EMACrossStrategy.js  # EMA 交叉策略實現
-│   └── index.js           # 主程式入口
-├── utils/                 # 工具函數
-├── logs/                  # 日誌文件
-├── .env                   # 環境變數配置
-├── .env.example          # 環境變數範例
-└── package.json          # 專案配置
+├── ema_cross_strategy_v1.0.js  # EMA 交叉策略主程式
+├── trading.js                  # 交易核心邏輯
+├── utils/                      # 工具函數
+├── logs/                       # 日誌文件
+├── .env                        # 環境變數配置
+├── .env.example               # 環境變數範例
+└── package.json               # 專案配置
 ```
 
 ## 配置說明
 
-在 `src/index.js` 中可以修改以下配置：
+在 `ema_cross_strategy_v1.0.js` 中可以修改以下配置：
 
 ```javascript
 const config = {
@@ -90,29 +84,13 @@ npm start
 2. 停止交易系統
 按 `Ctrl+C` 可以安全地停止系統
 
-## 擴展開發
+## 依賴套件
 
-### 添加新的數據源
-
-1. 在 `src/data` 目錄下創建新的數據源類
-2. 繼承 `DataSource` 類
-3. 實現必要的方法：
-   - connect()
-   - disconnect()
-   - subscribe()
-   - unsubscribe()
-   - getHistoricalData()
-   - getCurrentPrice()
-
-### 添加新的策略
-
-1. 在 `src/strategy` 目錄下創建新的策略類
-2. 繼承 `Strategy` 類
-3. 實現必要的方法：
-   - initialize()
-   - execute()
-   - stop()
-   - getStatus()
+- ccxt: 加密貨幣交易所 API 整合
+- dotenv: 環境變數管理
+- node-schedule: 排程任務管理
+- technicalindicators: 技術指標計算
+- ws: WebSocket 客戶端
 
 ## 風險提示
 

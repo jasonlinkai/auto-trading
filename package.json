@@ -1,16 +1,45 @@
 {
-  "name": "ema-cross-strategy",
+  "name": "auto-trading",
   "version": "1.0.0",
-  "description": "EMA Cross Strategy for BitMEX Trading",
+  "description": "auto-trading",
   "main": "ema_cross_strategy_v1.0.js",
   "scripts": {
-    "start": "node ema_cross_strategy_v1.0.js"
+    "start": "node ema_cross_strategy_v1.0.js",
+    "dev": "nodemon ema_cross_strategy_v1.0.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
+  "keywords": [
+    "trading",
+    "bitmex",
+    "cryptocurrency",
+    "ema",
+    "strategy"
+  ],
+  "author": "Jason Lin",
+  "license": "MIT",
   "dependencies": {
     "ccxt": "^4.2.1",
     "dotenv": "^16.4.1",
     "node-schedule": "^2.1.1",
     "technicalindicators": "^3.1.0",
     "ws": "^8.18.1"
-  }
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.3",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonlinkai/auto-trading.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonlinkai/auto-trading/issues"
+  },
+  "homepage": "https://github.com/jasonlinkai/auto-trading#readme"
 }
