@@ -1,0 +1,1 @@
+export { EmaCrossStrategy } from './ema_cross_strategy'; 

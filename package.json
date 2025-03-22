@@ -2,13 +2,14 @@
   "name": "auto-trading",
   "version": "1.0.0",
   "description": "auto-trading",
-  "main": "ema_cross_strategy_v1.0.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node ema_cross_strategy_v1.0.js",
-    "dev": "nodemon ema_cross_strategy_v1.0.js",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
-    "format": "prettier --write ."
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "keywords": [
     "trading",
@@ -20,16 +21,25 @@
   "author": "Jason Lin",
   "license": "MIT",
   "dependencies": {
+    "@types/inquirer": "^8.2.4",
     "ccxt": "^4.2.1",
     "dotenv": "^16.4.1",
+    "inquirer": "^8.2.4",
     "node-schedule": "^2.1.1",
     "technicalindicators": "^3.1.0",
     "ws": "^8.18.1"
   },
   "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/node-schedule": "^2.1.5",
+    "@types/ws": "^8.5.10",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.56.0",
     "nodemon": "^3.0.3",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=14.0.0"
