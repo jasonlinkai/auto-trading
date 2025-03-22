@@ -1,0 +1,16 @@
+{
+  "name": "ema-cross-strategy",
+  "version": "1.0.0",
+  "description": "EMA Cross Strategy for BitMEX Trading",
+  "main": "ema_cross_strategy_v1.0.js",
+  "scripts": {
+    "start": "node ema_cross_strategy_v1.0.js"
+  },
+  "dependencies": {
+    "ccxt": "^4.2.1",
+    "dotenv": "^16.4.1",
+    "node-schedule": "^2.1.1",
+    "technicalindicators": "^3.1.0",
+    "ws": "^8.18.1"
+  }
+}
