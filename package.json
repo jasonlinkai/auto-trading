@@ -9,7 +9,9 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "build:macchip": "node build.js --target=mac",
+    "build:exe": "node build.js --target=win"
   },
   "keywords": [
     "trading",
@@ -24,8 +26,10 @@
     "@types/inquirer": "^8.2.4",
     "ccxt": "^4.2.1",
     "dotenv": "^16.4.1",
+    "http-proxy-agent": "^7.0.2",
     "inquirer": "^8.2.4",
     "node-schedule": "^2.1.1",
+    "socks-proxy-agent": "^8.0.5",
     "technicalindicators": "^3.1.0",
     "ws": "^8.18.1"
   },
@@ -35,14 +39,16 @@
     "@types/ws": "^8.5.10",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
+    "esbuild": "^0.25.1",
     "eslint": "^8.56.0",
     "nodemon": "^3.0.3",
+    "pkg": "^5.8.1",
     "prettier": "^3.2.5",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
