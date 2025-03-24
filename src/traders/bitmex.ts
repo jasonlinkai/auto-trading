@@ -331,7 +331,9 @@ export class BitmexTrader implements Trader {
 
   async getPositions(): Promise<Position[]> {
     try {
-      const positions = await this.bitmex.fetchPositionsForSymbol(this.symbol);
+      const positions = await this.bitmex.fetchPositions([this.symbol]);
+      logger.writeLog(`當前持倉: ${JSON.stringify(positions, null, 2)}`, this.className);
+      
       return positions
         .filter((p: any) => (p.contracts || 0) > 0)
         .map((p: any) => ({
