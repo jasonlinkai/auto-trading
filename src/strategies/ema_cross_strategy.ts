@@ -1,4 +1,4 @@
-import { Config, Position, OrderIds, Balance } from '../types';
+import { Config, Position, OrderIds, Balance, Candle } from '../types';
 import { logger } from '../utils/logger';
 
 interface Trader {
@@ -23,7 +23,7 @@ export class EmaCrossStrategy {
     this.trader = trader;
   }
 
-  async execute(): Promise<void> {
+  async execute(currentCandle: Candle): Promise<void> {
     try {
       logger.writeLog('開始執行交易策略...', this.className);
 
@@ -32,7 +32,7 @@ export class EmaCrossStrategy {
       logger.writeLog(`賬戶餘額: ${JSON.stringify(balance)}`, this.className);
 
       // 獲取當前價格
-      const currentPrice = await this.trader.getCurrentPrice();
+      const currentPrice = currentCandle.close;
       logger.writeLog(`當前價格: ${currentPrice}`, this.className);
 
       // 計算 EMA

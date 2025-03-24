@@ -14,6 +14,7 @@ export interface Config {
   fastPeriod: number;
   slowPeriod: number;
   interval: string;
+  factor: number;
 }
 
 export interface Candle {

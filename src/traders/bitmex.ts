@@ -48,6 +48,7 @@ export class BitmexTrader implements Trader {
   private maxDailyLoss: number;
   private riskPerTrade: number;
   private interval: string;
+  private factor: number;
   private readonly className = 'BitmexTrader';
 
   constructor(config: Config) {
@@ -61,6 +62,7 @@ export class BitmexTrader implements Trader {
     this.maxDailyLoss = config.maxDailyLoss || 500;
     this.riskPerTrade = config.riskPerTrade || 100;
     this.interval = config.interval || '5m';
+    this.factor = config.factor || 5;
   }
 
   async initialize(): Promise<void> {
@@ -293,9 +295,9 @@ export class BitmexTrader implements Trader {
         this.symbol,
         this.interval,
         undefined,
-        period + 1
+        period * this.factor
       )) as BitmexOHLCV[];
-      if (ohlcv && ohlcv.length >= period + 1) {
+      if (ohlcv && ohlcv.length >= period * this.factor) {
         const prices = ohlcv.map(candle => Number(candle[4]) || 0);
         const ema = new EMA({ period, values: prices });
         return ema.getResult()[ema.getResult().length - 1];
@@ -313,9 +315,9 @@ export class BitmexTrader implements Trader {
         this.symbol,
         this.interval,
         undefined,
-        period + 2
+        period * this.factor + 1
       )) as BitmexOHLCV[];
-      if (ohlcv && ohlcv.length >= period + 2) {
+      if (ohlcv && ohlcv.length >= period * this.factor + 1) {
         const prices = ohlcv.slice(0, -1).map(candle => Number(candle[4]) || 0);
         const ema = new EMA({ period, values: prices });
         return ema.getResult()[ema.getResult().length - 1];
@@ -329,7 +331,7 @@ export class BitmexTrader implements Trader {
 
   async getPositions(): Promise<Position[]> {
     try {
-      const positions = await this.bitmex.fetchPositions([this.symbol]);
+      const positions = await this.bitmex.fetchPositionsForSymbol(this.symbol);
       return positions
         .filter((p: any) => (p.contracts || 0) > 0)
         .map((p: any) => ({
